@@ -1,0 +1,28 @@
+{
+  "checks": [
+    {
+      "type": "shape_text",
+      "name": "Text Box 1",
+      "equals": "聯絡人：周小姐 分機 5678"
+    },
+    {
+      "type": "shape_count",
+      "equals": 1
+    },
+    {
+      "type": "paragraph_count",
+      "equals": "unchanged"
+    },
+    {
+      "type": "paragraph_text",
+      "index": 3,
+      "equals": "集合地點：捷運劍潭站 1 號出口"
+    },
+    {
+      "type": "layout_preserved",
+      "ignore_lines_containing": [
+        "聯絡人"
+      ]
+    }
+  ]
+}

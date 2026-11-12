@@ -1,0 +1,16 @@
+{
+  "checks": [
+    {
+      "type": "paragraph_count",
+      "equals": 1
+    },
+    {
+      "type": "paragraph_text",
+      "index": 1,
+      "equals": "下午四點改在第三會議室開會"
+    },
+    {
+      "type": "page_count"
+    }
+  ]
+}

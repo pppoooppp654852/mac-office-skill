@@ -1,0 +1,43 @@
+{
+  "checks": [
+    {
+      "type": "text_absent",
+      "text": "大同貿易"
+    },
+    {
+      "type": "paragraph_text",
+      "index": 2,
+      "equals": "立約人：大同國際貿易股份有限公司（以下簡稱甲方）"
+    },
+    {
+      "type": "paragraph_text",
+      "index": 3,
+      "equals": "甲方同意提供大同國際貿易之產品目錄予乙方。"
+    },
+    {
+      "type": "paragraph_text",
+      "index": 4,
+      "equals": "本備忘錄由大同國際貿易法務部保管。"
+    },
+    {
+      "type": "paragraph_count",
+      "equals": "unchanged"
+    },
+    {
+      "type": "paragraph_alignment",
+      "index": 5,
+      "equals": "align paragraph right"
+    },
+    {
+      "type": "paragraph_alignment",
+      "index": 1,
+      "equals": "align paragraph center"
+    },
+    {
+      "type": "layout_preserved",
+      "ignore_lines_containing": [
+        "大同"
+      ]
+    }
+  ]
+}

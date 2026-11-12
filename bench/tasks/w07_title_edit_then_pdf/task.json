@@ -1,0 +1,25 @@
+{
+  "id": "w07_title_edit_then_pdf",
+  "split": "train",
+  "app": "word",
+  "category": "export",
+  "fixture": "營運報告.docx",
+  "prompt": "{docs}/營運報告.docx 標題的「（草稿）」拿掉，然後幫我輸出成 PDF，存成 {docs}/營運報告.pdf。改好的 Word 檔也要留著。",
+  "expected_files": [
+    "營運報告.docx",
+    "營運報告_revised.docx",
+    "營運報告.pdf"
+  ],
+  "graded_file": "營運報告_revised.docx",
+  "timeout_minutes": 15,
+  "reference": {
+    "runner_args": [
+      "--target-file",
+      "{docs}/營運報告.docx",
+      "--output-file",
+      "{docs}/營運報告.pdf",
+      "--timeout",
+      "60"
+    ]
+  }
+}

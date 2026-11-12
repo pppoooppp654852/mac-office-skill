@@ -1,0 +1,22 @@
+{
+  "id": "p02_ppt_bullet_edit",
+  "split": "val",
+  "app": "powerpoint",
+  "category": "ppt",
+  "fixture": "季度回顧.pptx",
+  "prompt": "{docs}/季度回顧.pptx 第 3 張的內容「交期延誤 3 件」改成「交期延誤 1 件」，存成 季度回顧_v2.pptx 放在同一個資料夾。",
+  "expected_files": [
+    "季度回顧.pptx",
+    "季度回顧_v2.pptx"
+  ],
+  "graded_file": "季度回顧_v2.pptx",
+  "timeout_minutes": 15,
+  "reference": {
+    "runner_args": [
+      "--target-file",
+      "{docs}/季度回顧.pptx",
+      "--output-file",
+      "{docs}/季度回顧_v2.pptx"
+    ]
+  }
+}

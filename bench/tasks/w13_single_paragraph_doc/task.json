@@ -1,0 +1,20 @@
+{
+  "id": "w13_single_paragraph_doc",
+  "split": "val",
+  "app": "word",
+  "category": "trap",
+  "fixture": "便條.docx",
+  "prompt": "{docs}/便條.docx 裡那句改成「下午四點改在第三會議室開會」。",
+  "expected_files": [
+    "便條.docx",
+    "便條_revised.docx"
+  ],
+  "graded_file": "便條_revised.docx",
+  "timeout_minutes": 15,
+  "reference": {
+    "runner_args": [
+      "--target-file",
+      "{docs}/便條.docx"
+    ]
+  }
+}

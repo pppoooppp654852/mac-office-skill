@@ -1,0 +1,17 @@
+{
+  "checks": [
+    {
+      "type": "answer_contains",
+      "all": [
+        [
+          "128000",
+          "12.8萬"
+        ],
+        [
+          "月結30天"
+        ]
+      ],
+      "describe": "the quote total and the payment terms"
+    }
+  ]
+}

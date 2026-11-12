@@ -1,0 +1,36 @@
+{
+  "checks": [
+    {
+      "type": "paragraph_text",
+      "index": 1,
+      "equals": "2026 第三季營運報告"
+    },
+    {
+      "type": "paragraph_alignment",
+      "index": 1,
+      "equals": "align paragraph center"
+    },
+    {
+      "type": "paragraph_count",
+      "equals": "unchanged"
+    },
+    {
+      "type": "pdf_text",
+      "file": "營運報告.pdf",
+      "contains": [
+        "2026 第三季營運報告",
+        "預計第四季維持穩定成長"
+      ],
+      "absent": [
+        "草稿"
+      ],
+      "pages": 1
+    },
+    {
+      "type": "layout_preserved",
+      "ignore_lines_containing": [
+        "營運報告"
+      ]
+    }
+  ]
+}

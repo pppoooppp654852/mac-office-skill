@@ -1,0 +1,20 @@
+{
+  "id": "w05_last_paragraph_date",
+  "split": "train",
+  "app": "word",
+  "category": "form_fill",
+  "fixture": "切結書.docx",
+  "prompt": "幫我把 {docs}/切結書.docx 填好：立書人寫「黃建國」，最後的日期填「2026 年 11 月 11 日」。",
+  "expected_files": [
+    "切結書.docx",
+    "切結書_revised.docx"
+  ],
+  "graded_file": "切結書_revised.docx",
+  "timeout_minutes": 15,
+  "reference": {
+    "runner_args": [
+      "--target-file",
+      "{docs}/切結書.docx"
+    ]
+  }
+}

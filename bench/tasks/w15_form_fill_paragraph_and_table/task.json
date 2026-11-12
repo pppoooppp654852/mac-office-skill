@@ -1,0 +1,20 @@
+{
+  "id": "w15_form_fill_paragraph_and_table",
+  "split": "test",
+  "app": "word",
+  "category": "form_fill",
+  "fixture": "出差申請單.docx",
+  "prompt": "{docs}/出差申請單.docx 幫我填：申請人「蔡宗翰」、出差事由「客戶系統導入」、地點「高雄」、天數「3」。",
+  "expected_files": [
+    "出差申請單.docx",
+    "出差申請單_revised.docx"
+  ],
+  "graded_file": "出差申請單_revised.docx",
+  "timeout_minutes": 15,
+  "reference": {
+    "runner_args": [
+      "--target-file",
+      "{docs}/出差申請單.docx"
+    ]
+  }
+}

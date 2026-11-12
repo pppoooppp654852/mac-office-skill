@@ -1,0 +1,20 @@
+{
+  "id": "w04_replace_company_name",
+  "split": "train",
+  "app": "word",
+  "category": "replace",
+  "fixture": "合作備忘錄.docx",
+  "prompt": "{docs}/合作備忘錄.docx 裡所有的「大同貿易」都改成「大同國際貿易」，格式維持原樣。",
+  "expected_files": [
+    "合作備忘錄.docx",
+    "合作備忘錄_revised.docx"
+  ],
+  "graded_file": "合作備忘錄_revised.docx",
+  "timeout_minutes": 15,
+  "reference": {
+    "runner_args": [
+      "--target-file",
+      "{docs}/合作備忘錄.docx"
+    ]
+  }
+}

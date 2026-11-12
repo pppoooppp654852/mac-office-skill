@@ -1,0 +1,17 @@
+{
+  "id": "w18_quote_total_question",
+  "split": "test",
+  "app": "word",
+  "category": "read",
+  "fixture": "宏遠報價單.docx",
+  "prompt": "{docs}/宏遠報價單.docx 這份報價單總金額是多少？付款條件是什麼？",
+  "expected_files": [
+    "宏遠報價單.docx"
+  ],
+  "graded_file": null,
+  "timeout_minutes": 15,
+  "reference": {
+    "runner_args": null,
+    "answer": "總金額是 NT$ 128,000，付款條件為月結 30 天。"
+  }
+}

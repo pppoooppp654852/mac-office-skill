@@ -6,3 +6,6 @@ __pycache__/
 *_revised.xlsx
 *_revised.pptx
 ~$*
+
+# Benchmark output: MIP-protected fixtures, rollout transcripts, candidate skills, reports
+bench/runs/

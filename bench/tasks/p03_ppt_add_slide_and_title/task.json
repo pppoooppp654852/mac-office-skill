@@ -1,0 +1,20 @@
+{
+  "id": "p03_ppt_add_slide_and_title",
+  "split": "test",
+  "app": "powerpoint",
+  "category": "ppt",
+  "fixture": "教育訓練.pptx",
+  "prompt": "{docs}/教育訓練.pptx 第一張標題的「（草案）」拿掉，然後在最後面加一張投影片，標題「課後測驗」，內容寫「線上測驗 11/30 截止」。",
+  "expected_files": [
+    "教育訓練.pptx",
+    "教育訓練_revised.pptx"
+  ],
+  "graded_file": "教育訓練_revised.pptx",
+  "timeout_minutes": 15,
+  "reference": {
+    "runner_args": [
+      "--target-file",
+      "{docs}/教育訓練.pptx"
+    ]
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "id": "w12_photo_in_table_cell",
+  "split": "val",
+  "app": "word",
+  "category": "table_image",
+  "fixture": "員工資料卡.docx",
+  "prompt": "把 {docs}/大頭照.png 放進 {docs}/員工資料卡.docx 表格裡「照片」下面那一格，寬度大概 2.5 公分就好，列高可以跟著變。",
+  "expected_files": [
+    "員工資料卡.docx",
+    "大頭照.png",
+    "員工資料卡_revised.docx"
+  ],
+  "graded_file": "員工資料卡_revised.docx",
+  "assets": [
+    {
+      "name": "大頭照.png",
+      "width": 240,
+      "height": 300,
+      "rgb": [
+        160,
+        90,
+        40
+      ]
+    }
+  ],
+  "timeout_minutes": 15,
+  "reference": {
+    "runner_args": [
+      "--target-file",
+      "{docs}/員工資料卡.docx",
+      "--asset",
+      "{docs}/大頭照.png"
+    ]
+  }
+}

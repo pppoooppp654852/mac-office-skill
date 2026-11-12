@@ -1,0 +1,32 @@
+{
+  "checks": [
+    {
+      "type": "slide_count",
+      "equals": 3
+    },
+    {
+      "type": "slide_shape_text",
+      "slide": 1,
+      "shape": 1,
+      "equals": "資安教育訓練"
+    },
+    {
+      "type": "slide_shape_text",
+      "slide": 2,
+      "shape": 1,
+      "equals": "課程大綱"
+    },
+    {
+      "type": "slide_shape_text",
+      "slide": 3,
+      "shape": 1,
+      "equals": "課後測驗"
+    },
+    {
+      "type": "slide_shape_text",
+      "slide": 3,
+      "shape": 2,
+      "equals": "線上測驗 11/30 截止"
+    }
+  ]
+}

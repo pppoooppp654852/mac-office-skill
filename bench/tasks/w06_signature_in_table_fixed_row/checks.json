@@ -1,0 +1,36 @@
+{
+  "checks": [
+    {
+      "type": "picture_count",
+      "equals": 1
+    },
+    {
+      "type": "table_shape",
+      "table": 1,
+      "rows": 3,
+      "columns": 2
+    },
+    {
+      "type": "cell_text",
+      "table": 1,
+      "row": 1,
+      "column": 2,
+      "equals": "辦公桌椅 20 組"
+    },
+    {
+      "type": "cell_text",
+      "table": 1,
+      "row": 3,
+      "column": 1,
+      "equals": "驗收人簽名"
+    },
+    {
+      "type": "paragraph_count",
+      "equals": "unchanged"
+    },
+    {
+      "type": "layout_preserved",
+      "ignore_lines_containing": []
+    }
+  ]
+}

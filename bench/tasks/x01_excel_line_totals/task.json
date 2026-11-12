@@ -1,0 +1,20 @@
+{
+  "id": "x01_excel_line_totals",
+  "split": "train",
+  "app": "excel",
+  "category": "excel",
+  "fixture": "採購明細.xlsx",
+  "prompt": "{docs}/採購明細.xlsx 的小計欄幫我用公式算出來（數量×單價），最下面合計那列也算出總額。",
+  "expected_files": [
+    "採購明細.xlsx",
+    "採購明細_revised.xlsx"
+  ],
+  "graded_file": "採購明細_revised.xlsx",
+  "timeout_minutes": 15,
+  "reference": {
+    "runner_args": [
+      "--target-file",
+      "{docs}/採購明細.xlsx"
+    ]
+  }
+}

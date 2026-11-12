@@ -1,0 +1,41 @@
+{
+  "checks": [
+    {
+      "type": "paragraph_count",
+      "equals": 6
+    },
+    {
+      "type": "paragraph_text",
+      "index": 3,
+      "equals": "出席：王經理、李工程師"
+    },
+    {
+      "type": "paragraph_text",
+      "index": 4,
+      "equals": "地點：第二會議室"
+    },
+    {
+      "type": "paragraph_text",
+      "index": 5,
+      "equals": "決議：下週完成測試。"
+    },
+    {
+      "type": "paragraph_alignment",
+      "index": 4,
+      "equals": "align paragraph left"
+    },
+    {
+      "type": "paragraph_alignment",
+      "index": 6,
+      "equals": "align paragraph right"
+    },
+    {
+      "type": "paragraph_alignment",
+      "index": 1,
+      "equals": "align paragraph center"
+    },
+    {
+      "type": "page_count"
+    }
+  ]
+}

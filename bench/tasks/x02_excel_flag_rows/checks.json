@@ -1,0 +1,44 @@
+{
+  "checks": [
+    {
+      "type": "excel_cells",
+      "cells": [
+        {
+          "sheet": "報帳",
+          "cell": "D3",
+          "value": "需主管核准"
+        },
+        {
+          "sheet": "報帳",
+          "cell": "D5",
+          "value": "需主管核准"
+        },
+        {
+          "sheet": "報帳",
+          "cell": "D2",
+          "value": ""
+        },
+        {
+          "sheet": "報帳",
+          "cell": "D4",
+          "value": ""
+        },
+        {
+          "sheet": "報帳",
+          "cell": "D6",
+          "value": ""
+        },
+        {
+          "sheet": "報帳",
+          "cell": "C6",
+          "value": 9999
+        },
+        {
+          "sheet": "報帳",
+          "cell": "D1",
+          "value": "審核"
+        }
+      ]
+    }
+  ]
+}

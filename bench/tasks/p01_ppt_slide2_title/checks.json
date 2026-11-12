@@ -1,0 +1,32 @@
+{
+  "checks": [
+    {
+      "type": "slide_count",
+      "equals": 3
+    },
+    {
+      "type": "slide_shape_text",
+      "slide": 2,
+      "shape": 1,
+      "equals": "市場分析"
+    },
+    {
+      "type": "slide_shape_text",
+      "slide": 2,
+      "shape": 2,
+      "equals": "目標客群：中小企業"
+    },
+    {
+      "type": "slide_shape_text",
+      "slide": 1,
+      "shape": 1,
+      "equals": "新產品發表"
+    },
+    {
+      "type": "slide_shape_text",
+      "slide": 3,
+      "shape": 1,
+      "equals": "下一步"
+    }
+  ]
+}

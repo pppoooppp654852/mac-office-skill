@@ -1,0 +1,35 @@
+{
+  "checks": [
+    {
+      "type": "paragraph_count",
+      "equals": "unchanged"
+    },
+    {
+      "type": "paragraph_text",
+      "index": 3,
+      "equals": "立書人：黃建國"
+    },
+    {
+      "type": "paragraph_text",
+      "index": 4,
+      "equals": "日期：2026 年 11 月 11 日"
+    },
+    {
+      "type": "paragraph_alignment",
+      "index": 3,
+      "equals": "align paragraph left"
+    },
+    {
+      "type": "paragraph_alignment",
+      "index": 4,
+      "equals": "align paragraph right"
+    },
+    {
+      "type": "layout_preserved",
+      "ignore_lines_containing": [
+        "立書人",
+        "日期"
+      ]
+    }
+  ]
+}

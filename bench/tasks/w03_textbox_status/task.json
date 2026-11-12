@@ -1,0 +1,22 @@
+{
+  "id": "w03_textbox_status",
+  "split": "train",
+  "app": "word",
+  "category": "textbox",
+  "fixture": "專案週報.docx",
+  "prompt": "{docs}/專案週報.docx 右邊那個寫「狀態：草稿」的框，改成「狀態：已核准」，其他不要動，另存成同資料夾的 專案週報_核准.docx。",
+  "expected_files": [
+    "專案週報.docx",
+    "專案週報_核准.docx"
+  ],
+  "graded_file": "專案週報_核准.docx",
+  "timeout_minutes": 15,
+  "reference": {
+    "runner_args": [
+      "--target-file",
+      "{docs}/專案週報.docx",
+      "--output-file",
+      "{docs}/專案週報_核准.docx"
+    ]
+  }
+}

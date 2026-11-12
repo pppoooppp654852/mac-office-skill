@@ -1,0 +1,24 @@
+{
+  "id": "w17_export_pdf_only",
+  "split": "test",
+  "app": "word",
+  "category": "export",
+  "fixture": "年度計畫.docx",
+  "prompt": "幫我把 {docs}/年度計畫.docx 轉成 PDF，放在同一個資料夾。",
+  "expected_files": [
+    "年度計畫.docx",
+    "年度計畫.pdf"
+  ],
+  "graded_file": null,
+  "timeout_minutes": 15,
+  "reference": {
+    "runner_args": [
+      "--target-file",
+      "{docs}/年度計畫.docx",
+      "--output-file",
+      "{docs}/年度計畫.pdf",
+      "--timeout",
+      "60"
+    ]
+  }
+}

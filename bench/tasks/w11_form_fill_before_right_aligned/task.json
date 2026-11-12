@@ -1,0 +1,20 @@
+{
+  "id": "w11_form_fill_before_right_aligned",
+  "split": "val",
+  "app": "word",
+  "category": "form_fill",
+  "fixture": "報名表.docx",
+  "prompt": "{docs}/報名表.docx 姓名填「吳佩珊」，單位填「資訊處」，備註填「素食」。",
+  "expected_files": [
+    "報名表.docx",
+    "報名表_revised.docx"
+  ],
+  "graded_file": "報名表_revised.docx",
+  "timeout_minutes": 15,
+  "reference": {
+    "runner_args": [
+      "--target-file",
+      "{docs}/報名表.docx"
+    ]
+  }
+}

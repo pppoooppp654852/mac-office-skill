@@ -1,0 +1,20 @@
+{
+  "id": "x03_excel_summary_stats",
+  "split": "test",
+  "app": "excel",
+  "category": "excel",
+  "fixture": "成績表.xlsx",
+  "prompt": "{docs}/成績表.xlsx 的「摘要」工作表，B1 到 B3 幫我用公式算出「成績」那張表的平均分數、最高分，以及 70 分以上的人數。",
+  "expected_files": [
+    "成績表.xlsx",
+    "成績表_revised.xlsx"
+  ],
+  "graded_file": "成績表_revised.xlsx",
+  "timeout_minutes": 15,
+  "reference": {
+    "runner_args": [
+      "--target-file",
+      "{docs}/成績表.xlsx"
+    ]
+  }
+}

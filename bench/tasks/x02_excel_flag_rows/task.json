@@ -1,0 +1,20 @@
+{
+  "id": "x02_excel_flag_rows",
+  "split": "val",
+  "app": "excel",
+  "category": "excel",
+  "fixture": "報帳清單.xlsx",
+  "prompt": "{docs}/報帳清單.xlsx 金額超過 10000 的，在審核欄填「需主管核准」，其他的留空。",
+  "expected_files": [
+    "報帳清單.xlsx",
+    "報帳清單_revised.xlsx"
+  ],
+  "graded_file": "報帳清單_revised.xlsx",
+  "timeout_minutes": 15,
+  "reference": {
+    "runner_args": [
+      "--target-file",
+      "{docs}/報帳清單.xlsx"
+    ]
+  }
+}

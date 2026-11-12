@@ -1,0 +1,21 @@
+{
+  "id": "w08_word97_disguised_fill",
+  "split": "train",
+  "app": "word",
+  "category": "trap",
+  "fixture": "公文簽辦單.docx",
+  "prompt": "{docs}/公文簽辦單.docx 的承辦人幫我填「張家豪」。",
+  "expected_files": [
+    "公文簽辦單.docx",
+    "公文簽辦單_revised.docx"
+  ],
+  "graded_file": "公文簽辦單_revised.docx",
+  "build_as": "公文簽辦單.doc",
+  "timeout_minutes": 15,
+  "reference": {
+    "runner_args": [
+      "--target-file",
+      "{docs}/公文簽辦單.docx"
+    ]
+  }
+}

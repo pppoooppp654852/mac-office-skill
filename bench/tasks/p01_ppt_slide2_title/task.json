@@ -1,0 +1,20 @@
+{
+  "id": "p01_ppt_slide2_title",
+  "split": "train",
+  "app": "powerpoint",
+  "category": "ppt",
+  "fixture": "產品簡報.pptx",
+  "prompt": "把 {docs}/產品簡報.pptx 第 2 張投影片的標題改成「市場分析」。",
+  "expected_files": [
+    "產品簡報.pptx",
+    "產品簡報_revised.pptx"
+  ],
+  "graded_file": "產品簡報_revised.pptx",
+  "timeout_minutes": 15,
+  "reference": {
+    "runner_args": [
+      "--target-file",
+      "{docs}/產品簡報.pptx"
+    ]
+  }
+}

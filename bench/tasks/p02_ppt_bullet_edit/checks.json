@@ -1,0 +1,26 @@
+{
+  "checks": [
+    {
+      "type": "slide_count",
+      "equals": 3
+    },
+    {
+      "type": "slide_shape_text",
+      "slide": 3,
+      "shape": 2,
+      "equals": "交期延誤 1 件"
+    },
+    {
+      "type": "slide_shape_text",
+      "slide": 3,
+      "shape": 1,
+      "equals": "待改善"
+    },
+    {
+      "type": "slide_shape_text",
+      "slide": 2,
+      "shape": 2,
+      "equals": "簽約客戶 12 家"
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "id": "w02_form_fill_table_cells",
+  "split": "train",
+  "app": "word",
+  "category": "form_fill",
+  "fixture": "請假單.docx",
+  "prompt": "{docs}/請假單.docx 這張請假單幫我填：姓名 陳志明、部門 研發部、假別 特休、日期 2026/12/01–2026/12/03。",
+  "expected_files": [
+    "請假單.docx",
+    "請假單_revised.docx"
+  ],
+  "graded_file": "請假單_revised.docx",
+  "timeout_minutes": 15,
+  "reference": {
+    "runner_args": [
+      "--target-file",
+      "{docs}/請假單.docx"
+    ]
+  }
+}

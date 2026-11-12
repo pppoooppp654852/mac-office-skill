@@ -1,0 +1,41 @@
+{
+  "checks": [
+    {
+      "type": "paragraph_count",
+      "equals": "unchanged"
+    },
+    {
+      "type": "paragraph_text",
+      "index": 2,
+      "equals": "姓名：吳佩珊"
+    },
+    {
+      "type": "paragraph_text",
+      "index": 3,
+      "equals": "單位：資訊處"
+    },
+    {
+      "type": "paragraph_text",
+      "index": 4,
+      "equals": "備註：素食"
+    },
+    {
+      "type": "paragraph_alignment",
+      "index": 4,
+      "equals": "align paragraph left"
+    },
+    {
+      "type": "paragraph_alignment",
+      "index": 5,
+      "equals": "align paragraph right"
+    },
+    {
+      "type": "layout_preserved",
+      "ignore_lines_containing": [
+        "姓名",
+        "單位",
+        "備註"
+      ]
+    }
+  ]
+}

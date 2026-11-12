@@ -1,0 +1,29 @@
+{
+  "checks": [
+    {
+      "type": "paragraph_text",
+      "index": 2,
+      "equals": "承辦人：張家豪"
+    },
+    {
+      "type": "paragraph_text",
+      "index": 3,
+      "equals": "主旨：採購辦公用品。"
+    },
+    {
+      "type": "paragraph_count",
+      "equals": "unchanged"
+    },
+    {
+      "type": "paragraph_alignment",
+      "index": 1,
+      "equals": "align paragraph center"
+    },
+    {
+      "type": "layout_preserved",
+      "ignore_lines_containing": [
+        "承辦人"
+      ]
+    }
+  ]
+}

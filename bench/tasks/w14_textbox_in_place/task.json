@@ -1,0 +1,23 @@
+{
+  "id": "w14_textbox_in_place",
+  "split": "val",
+  "app": "word",
+  "category": "textbox",
+  "fixture": "活動海報.docx",
+  "prompt": "{docs}/活動海報.docx 下面那個聯絡資訊的框，分機改成 5678，其他照舊。直接存回原檔就可以，不用另存。",
+  "expected_files": [
+    "活動海報.docx"
+  ],
+  "graded_file": "活動海報.docx",
+  "modified_in_place": [
+    "活動海報.docx"
+  ],
+  "timeout_minutes": 15,
+  "reference": {
+    "runner_args": [
+      "--target-file",
+      "{docs}/活動海報.docx",
+      "--in-place"
+    ]
+  }
+}

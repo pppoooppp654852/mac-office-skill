@@ -1,0 +1,53 @@
+{
+  "checks": [
+    {
+      "type": "paragraph_count",
+      "equals": "unchanged"
+    },
+    {
+      "type": "paragraph_text",
+      "index": 2,
+      "equals": "申請人：蔡宗翰"
+    },
+    {
+      "type": "paragraph_text",
+      "index": 3,
+      "equals": "出差事由：客戶系統導入"
+    },
+    {
+      "type": "paragraph_alignment",
+      "index": 3,
+      "equals": "align paragraph left"
+    },
+    {
+      "type": "table_shape",
+      "table": 1,
+      "rows": 2,
+      "columns": 2
+    },
+    {
+      "type": "cell_text",
+      "table": 1,
+      "row": 1,
+      "column": 2,
+      "equals": "高雄"
+    },
+    {
+      "type": "cell_text",
+      "table": 1,
+      "row": 2,
+      "column": 2,
+      "equals": "3"
+    },
+    {
+      "type": "layout_preserved",
+      "ignore_lines_containing": [
+        "申請人",
+        "出差事由",
+        "地點",
+        "天數",
+        "高雄"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "checks": [
+    {
+      "type": "excel_cells",
+      "cells": [
+        {
+          "sheet": "明細",
+          "cell": "D2",
+          "value": 160000,
+          "formula": true
+        },
+        {
+          "sheet": "明細",
+          "cell": "D3",
+          "value": 65000,
+          "formula": true
+        },
+        {
+          "sheet": "明細",
+          "cell": "D4",
+          "value": 17800,
+          "formula": true
+        },
+        {
+          "sheet": "明細",
+          "cell": "D5",
+          "value": 9000,
+          "formula": true
+        },
+        {
+          "sheet": "明細",
+          "cell": "D6",
+          "value": 16000,
+          "formula": true
+        },
+        {
+          "sheet": "明細",
+          "cell": "D7",
+          "value": 267800,
+          "formula": true
+        },
+        {
+          "sheet": "明細",
+          "cell": "B2",
+          "value": 5
+        },
+        {
+          "sheet": "明細",
+          "cell": "A7",
+          "value": "合計"
+        }
+      ]
+    }
+  ]
+}

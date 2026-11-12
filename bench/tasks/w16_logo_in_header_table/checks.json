@@ -1,0 +1,29 @@
+{
+  "checks": [
+    {
+      "type": "picture_count",
+      "equals": 1
+    },
+    {
+      "type": "table_shape",
+      "table": 1,
+      "rows": 1,
+      "columns": 2
+    },
+    {
+      "type": "cell_text",
+      "table": 1,
+      "row": 1,
+      "column": 2,
+      "equals": "宏遠科技有限公司 報價單"
+    },
+    {
+      "type": "paragraph_count",
+      "equals": "unchanged"
+    },
+    {
+      "type": "layout_preserved",
+      "ignore_lines_containing": []
+    }
+  ]
+}

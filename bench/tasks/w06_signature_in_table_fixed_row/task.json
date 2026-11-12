@@ -1,0 +1,35 @@
+{
+  "id": "w06_signature_in_table_fixed_row",
+  "split": "train",
+  "app": "word",
+  "category": "table_image",
+  "fixture": "驗收單.docx",
+  "prompt": "把 {docs}/簽名.png 這張簽名圖放進 {docs}/驗收單.docx 表格裡「驗收人簽名」右邊那格。表格的高度不能變，下面的文字也不能被擠下去。",
+  "expected_files": [
+    "驗收單.docx",
+    "簽名.png",
+    "驗收單_revised.docx"
+  ],
+  "graded_file": "驗收單_revised.docx",
+  "assets": [
+    {
+      "name": "簽名.png",
+      "width": 360,
+      "height": 120,
+      "rgb": [
+        30,
+        60,
+        160
+      ]
+    }
+  ],
+  "timeout_minutes": 15,
+  "reference": {
+    "runner_args": [
+      "--target-file",
+      "{docs}/驗收單.docx",
+      "--asset",
+      "{docs}/簽名.png"
+    ]
+  }
+}

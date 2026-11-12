@@ -1,0 +1,40 @@
+{
+  "checks": [
+    {
+      "type": "paragraph_text",
+      "index": 2,
+      "equals": "第一條　甲方委託乙方辦理系統維護。"
+    },
+    {
+      "type": "paragraph_text",
+      "index": 3,
+      "equals": "甲方應於每月五日前支付費用。"
+    },
+    {
+      "type": "paragraph_text",
+      "index": 4,
+      "equals": "第二條　乙方應每季向委託人提出報告。"
+    },
+    {
+      "type": "paragraph_text",
+      "index": 5,
+      "equals": "委託人得隨時查核乙方工作紀錄。"
+    },
+    {
+      "type": "paragraph_text",
+      "index": 6,
+      "equals": "第三條　本契約自簽訂日起生效。"
+    },
+    {
+      "type": "paragraph_count",
+      "equals": "unchanged"
+    },
+    {
+      "type": "layout_preserved",
+      "ignore_lines_containing": [
+        "第二條",
+        "查核"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "id": "w16_logo_in_header_table",
+  "split": "test",
+  "app": "word",
+  "category": "table_image",
+  "fixture": "報價單.docx",
+  "prompt": "幫我把 {docs}/logo.png 放到 {docs}/報價單.docx 最上面表格左邊那格，當作公司 logo。第一列的高度不要變，整份版面維持原樣。",
+  "expected_files": [
+    "報價單.docx",
+    "logo.png",
+    "報價單_revised.docx"
+  ],
+  "graded_file": "報價單_revised.docx",
+  "assets": [
+    {
+      "name": "logo.png",
+      "width": 300,
+      "height": 300,
+      "rgb": [
+        0,
+        120,
+        90
+      ]
+    }
+  ],
+  "timeout_minutes": 15,
+  "reference": {
+    "runner_args": [
+      "--target-file",
+      "{docs}/報價單.docx",
+      "--asset",
+      "{docs}/logo.png"
+    ]
+  }
+}

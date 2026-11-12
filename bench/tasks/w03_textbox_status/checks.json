@@ -1,0 +1,28 @@
+{
+  "checks": [
+    {
+      "type": "shape_text",
+      "name": "Text Box 2",
+      "equals": "狀態：已核准"
+    },
+    {
+      "type": "shape_text",
+      "name": "Text Box 1",
+      "equals": "機密等級：內部"
+    },
+    {
+      "type": "shape_count",
+      "equals": 2
+    },
+    {
+      "type": "paragraph_count",
+      "equals": "unchanged"
+    },
+    {
+      "type": "layout_preserved",
+      "ignore_lines_containing": [
+        "狀態"
+      ]
+    }
+  ]
+}

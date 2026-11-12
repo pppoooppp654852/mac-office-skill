@@ -1,0 +1,42 @@
+{
+  "checks": [
+    {
+      "type": "picture_count",
+      "equals": 1
+    },
+    {
+      "type": "table_shape",
+      "table": 1,
+      "rows": 3,
+      "columns": 3
+    },
+    {
+      "type": "cell_text",
+      "table": 1,
+      "row": 1,
+      "column": 3,
+      "equals": "照片"
+    },
+    {
+      "type": "cell_text",
+      "table": 1,
+      "row": 2,
+      "column": 2,
+      "equals": "業務部"
+    },
+    {
+      "type": "cell_text",
+      "table": 1,
+      "row": 3,
+      "column": 2,
+      "equals": "2301"
+    },
+    {
+      "type": "paragraph_count",
+      "equals": "unchanged"
+    },
+    {
+      "type": "page_count"
+    }
+  ]
+}

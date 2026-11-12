@@ -1,0 +1,20 @@
+{
+  "id": "w09_scoped_replace_clause",
+  "split": "train",
+  "app": "word",
+  "category": "replace",
+  "fixture": "委託契約.docx",
+  "prompt": "{docs}/委託契約.docx 只有第二條（含底下那段）裡的「甲方」要改成「委託人」，第一條、第三條不要動。",
+  "expected_files": [
+    "委託契約.docx",
+    "委託契約_revised.docx"
+  ],
+  "graded_file": "委託契約_revised.docx",
+  "timeout_minutes": 15,
+  "reference": {
+    "runner_args": [
+      "--target-file",
+      "{docs}/委託契約.docx"
+    ]
+  }
+}

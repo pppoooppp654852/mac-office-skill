@@ -1,0 +1,32 @@
+{
+  "checks": [
+    {
+      "type": "excel_cells",
+      "cells": [
+        {
+          "sheet": "摘要",
+          "cell": "B1",
+          "value": 81.5,
+          "formula": true
+        },
+        {
+          "sheet": "摘要",
+          "cell": "B2",
+          "value": 95,
+          "formula": true
+        },
+        {
+          "sheet": "摘要",
+          "cell": "B3",
+          "value": 5,
+          "formula": true
+        },
+        {
+          "sheet": "成績",
+          "cell": "B4",
+          "value": 65
+        }
+      ]
+    }
+  ]
+}

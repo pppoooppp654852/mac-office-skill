@@ -1,0 +1,20 @@
+{
+  "id": "w10_insert_paragraph_after",
+  "split": "train",
+  "app": "word",
+  "category": "structure",
+  "fixture": "會議紀錄.docx",
+  "prompt": "在 {docs}/會議紀錄.docx「出席」那行下面加一行「地點：第二會議室」，其他行不要動。",
+  "expected_files": [
+    "會議紀錄.docx",
+    "會議紀錄_revised.docx"
+  ],
+  "graded_file": "會議紀錄_revised.docx",
+  "timeout_minutes": 15,
+  "reference": {
+    "runner_args": [
+      "--target-file",
+      "{docs}/會議紀錄.docx"
+    ]
+  }
+}

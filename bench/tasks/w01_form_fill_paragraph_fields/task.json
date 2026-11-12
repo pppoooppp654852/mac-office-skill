@@ -1,0 +1,20 @@
+{
+  "id": "w01_form_fill_paragraph_fields",
+  "split": "train",
+  "app": "word",
+  "category": "form_fill",
+  "fixture": "會員申請表.docx",
+  "prompt": "幫我填一下 {docs}/會員申請表.docx：姓名「林雅婷」、電話「0912-345-678」、地址「台北市信義區松仁路 100 號」。版面不要跑掉。",
+  "expected_files": [
+    "會員申請表.docx",
+    "會員申請表_revised.docx"
+  ],
+  "graded_file": "會員申請表_revised.docx",
+  "timeout_minutes": 15,
+  "reference": {
+    "runner_args": [
+      "--target-file",
+      "{docs}/會員申請表.docx"
+    ]
+  }
+}
