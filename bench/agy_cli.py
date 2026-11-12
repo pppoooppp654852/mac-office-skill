@@ -1,4 +1,4 @@
-"""Run the Antigravity CLI (`agy`) headlessly for rollouts, reflections and quota probes.
+"""Run the Antigravity CLI (`agy`) headlessly for rollouts.
 
 Skill isolation: agy loads user skills from ``~/.gemini/antigravity-cli/skills``, a symlink to
 ``~/.claude/skills`` whose ``mac-office`` entry points at this working tree, and a project
@@ -8,11 +8,9 @@ user skill, and restores the symlink afterwards, also after a crash on the next 
 Code reads ``~/.claude/skills`` directly and is never affected.
 """
 
-import json
 import os
 import shutil
 import signal
-import subprocess
 from contextlib import contextmanager
 
 AGY_SKILLS_LINK = os.path.expanduser("~/.gemini/antigravity-cli/skills")
@@ -33,32 +31,9 @@ def agy_command(model, prompt, output_format, *extra):
     ]
 
 
-def last_json_line(text):
-    """agy may print plain text (e.g. an auth prompt) before its JSON answer."""
-    for line in reversed((text or "").splitlines()):
-        if line.startswith("{"):
-            try:
-                return json.loads(line)
-            except json.JSONDecodeError:
-                continue
-    return None
-
-
 def is_quota_error(message):
     lowered = (message or "").lower()
     return any(marker in lowered for marker in QUOTA_MARKERS)
-
-
-def model_available(model):
-    try:
-        completed = subprocess.run(
-            agy_command(model, "Reply with the word ok.", "json"),
-            capture_output=True, text=True, timeout=180, cwd="/tmp",
-        )
-    except subprocess.TimeoutExpired:
-        return False
-    answer = last_json_line(completed.stdout)
-    return bool(answer) and answer.get("status") == "SUCCESS"
 
 
 def _restore(original_target):

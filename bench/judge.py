@@ -4,8 +4,7 @@
 Every check reads the deliverable through office_runner.py itself (--inspect, --render, or a
 read-only --app probe for Excel formulas), so a score is reproducible and never depends on an
 LLM. Each failed check carries a semantic ``feedback`` sentence (what is wrong with the
-document, never the checker's thresholds or patterns): that sentence is all the optimizer
-sees of the grader.
+document, never the checker's thresholds or patterns).
 
 hard = 1 only when every check passes; soft = fraction of checks passed.
 """

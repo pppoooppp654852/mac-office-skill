@@ -20,14 +20,13 @@ import sys
 import tempfile
 import time
 
-from agy_cli import agy_command, user_skills_without_mac_office
+from agy_cli import agy_command, is_quota_error, user_skills_without_mac_office
 from judge import judge
-from model_quota import is_provider_failure, wait_until_model_available
 from office_health import OfficeUnavailable, app_responsive, wait_until_responsive
 from runner_cli import REPO_DIR, STAGING_ROOT, staging_leftovers
 from task_catalog import load_tasks, materialize_docs, render_prompt
 
-TARGET_MODEL = "gemini-4-argon-medium"
+DEFAULT_MODEL = "gemini-4-argon-medium"
 SKILL_COPY_IGNORE = shutil.ignore_patterns("tests", "__pycache__", "*.pyc", ".DS_Store")
 # agy has no per-command deny list, so the safety boundary the user set is stated in the prompt.
 SAFETY_NOTE = (
@@ -41,6 +40,13 @@ WEDGE_RETRIES = 2
 
 class ProviderFailure(RuntimeError):
     """The model API refused the rollout; nothing about the skill was measured."""
+
+
+def is_provider_failure(summary):
+    """A run cut short by a quota error, or one that errored before the agent did any work."""
+    if not summary.get("is_error"):
+        return False
+    return is_quota_error(summary.get("error")) or summary.get("tool_calls", 0) == 0
 
 
 class DialogSuspected(RuntimeError):
@@ -122,9 +128,9 @@ def clear_staging_leftovers():
             os.unlink(path)
 
 
-def run_agent(prompt, project_dir, trajectory_path, timeout_sec):
+def run_agent(model, prompt, project_dir, trajectory_path, timeout_sec):
     """Run the target agent; on timeout terminate its process group (never an Office app)."""
-    command = agy_command(TARGET_MODEL, prompt + SAFETY_NOTE, "stream-json")
+    command = agy_command(model, prompt + SAFETY_NOTE, "stream-json")
     with open(trajectory_path, "w", encoding="utf-8") as stdout, open(trajectory_path + ".stderr", "w") as stderr:
         process = subprocess.Popen(
             command, cwd=project_dir, stdin=subprocess.DEVNULL, stdout=stdout, stderr=stderr,
@@ -143,7 +149,7 @@ def run_agent(prompt, project_dir, trajectory_path, timeout_sec):
             return True
 
 
-def run_rollout(task, skill_dir, seed, out_dir):
+def run_rollout(task, skill_dir, model, seed, out_dir):
     os.makedirs(out_dir, exist_ok=True)
     clear_staging_leftovers()
     project = tempfile.mkdtemp(prefix="mac-office-rollout-")
@@ -153,7 +159,7 @@ def run_rollout(task, skill_dir, seed, out_dir):
         docs = os.path.join(project, "docs")
         hashes = materialize_docs(task, docs)
         trajectory_path = os.path.join(out_dir, "trajectory.jsonl")
-        timed_out = run_agent(render_prompt(task, docs), project, trajectory_path, task["timeout_minutes"] * 60)
+        timed_out = run_agent(model, render_prompt(task, docs), project, trajectory_path, task["timeout_minutes"] * 60)
         wall_sec = round(time.time() - started, 1)
         leftovers = staging_leftovers()
         summary = summarize_trajectory(trajectory_path)
@@ -166,6 +172,7 @@ def run_rollout(task, skill_dir, seed, out_dir):
             "task_id": task["id"],
             "split": task["split"],
             "seed": seed,
+            "model": model,
             "skill_dir": skill_dir,
             "timed_out": timed_out,
             "wall_sec": wall_sec,
@@ -202,17 +209,11 @@ def quarantine(out_dir):
     return target
 
 
-def run_checked_rollout(task, skill_dir, seed, out_dir, log):
+def run_checked_rollout(task, skill_dir, model, seed, out_dir, log):
     """Run one rollout with the app healthy before and after; rerun it after a wedge."""
     for _ in range(WEDGE_RETRIES):
         wait_until_responsive(task["app"], log=log)
-        try:
-            record = run_rollout(task, skill_dir, seed, out_dir)
-        except ProviderFailure as error:
-            log(f"  provider failure ({error}); waiting, then rerunning {task['id']} seed{seed}")
-            shutil.rmtree(out_dir, ignore_errors=True)
-            wait_until_model_available([TARGET_MODEL], log=log)
-            return run_checked_rollout(task, skill_dir, seed, out_dir, log)
+        record = run_rollout(task, skill_dir, model, seed, out_dir)
         if app_responsive(task["app"]):
             return record
         log(f"  {task['app']} wedged after {task['id']} seed{seed}; last runner call: {last_runner_call(record)}")
@@ -220,20 +221,20 @@ def run_checked_rollout(task, skill_dir, seed, out_dir, log):
     raise OfficeUnavailable(f"{task['app']} wedged {WEDGE_RETRIES} times on {task['id']} seed{seed}")
 
 
-def run_batch(tasks, skill_dir, out_root, seeds, log=print):
+def run_batch(tasks, skill_dir, model, out_root, seeds, log=print):
     """Run every task × seed sequentially; returns the records (reusing finished ones)."""
     with user_skills_without_mac_office():
-        return _run_batch(tasks, skill_dir, out_root, seeds, log)
+        return _run_batch(tasks, skill_dir, model, out_root, seeds, log)
 
 
-def _run_batch(tasks, skill_dir, out_root, seeds, log):
+def _run_batch(tasks, skill_dir, model, out_root, seeds, log):
     records, consecutive_timeouts = [], 0
     for seed in range(1, seeds + 1):
         for task in tasks:
             out_dir = os.path.join(out_root, task["id"], f"seed{seed}")
             record = load_record(out_dir)
             if record is None:
-                record = run_checked_rollout(task, skill_dir, seed, out_dir, log)
+                record = run_checked_rollout(task, skill_dir, model, seed, out_dir, log)
                 troubled = record["timed_out"] or record["runner_timeouts"] > 0
                 consecutive_timeouts = consecutive_timeouts + 1 if troubled else 0
                 log(
@@ -251,7 +252,7 @@ def _run_batch(tasks, skill_dir, out_root, seeds, log):
 
 
 def scores_by_task(records):
-    """{task id: [hard per seed]} ordered by seed, the evalkit outcome format."""
+    """{task id: [hard per seed]} ordered by seed."""
     table = {}
     for record in sorted(records, key=lambda r: (r["task_id"], r["seed"])):
         table.setdefault(record["task_id"], []).append(record["hard"])
@@ -265,9 +266,10 @@ def main():
     parser.add_argument("--split", choices=["train", "val", "test"], help="Only this split")
     parser.add_argument("--task", action="append", help="Only these task ids")
     parser.add_argument("--seeds", type=int, default=2)
+    parser.add_argument("--model", default=DEFAULT_MODEL, help="agy model id (see `agy models`)")
     args = parser.parse_args()
     tasks = load_tasks(split=args.split, ids=args.task)
-    records = run_batch(tasks, os.path.abspath(args.skill), os.path.abspath(args.out), args.seeds)
+    records = run_batch(tasks, os.path.abspath(args.skill), args.model, os.path.abspath(args.out), args.seeds)
     with open(os.path.join(args.out, "scores.json"), "w", encoding="utf-8") as handle:
         json.dump(scores_by_task(records), handle, indent=1)
     return 0
