@@ -136,14 +136,16 @@ at creation time.
 tell application "Microsoft Word"
 	set p to system attribute "MAC_OFFICE_ASSET_1"
 	set theTable to table 1 of active document
-	set thePic to make new inline picture at end of text object of cell 2 of row 1 of theTable ¬
+	set thePic to make new inline picture at beginning of text object of cell 2 of row 1 of theTable ¬
 		with properties {file name:p}
-	set width of thePic to 120.0
 	set lock aspect ratio of thePic to true
+	set width of thePic to 120.0
 end tell
 ```
 
-Never use `at text object of cell` (adds a column and splits the cell) or `at start of …` (errors) — §8.4.
+Always insert `at beginning of text object of cell …` (empty or not; the picture goes before any
+text). Never use `at end of text object of cell` (lands in the next cell, or adds a column after a
+row's last cell), `at text object of cell` (splits the cell) or `at start of …` (errors) — §8.4.
 
 **Floating picture** (does not disturb row height; wrap settings decide overlap):
 
@@ -198,6 +200,7 @@ end tell
 For a throwaway visual check (PDF kept for diffing, original untouched, no `_revised`) prefer
 `python3 scripts/office_runner.py --render "/abs/in.docx"` — see `SKILL.md` §3.
 
+<!-- PROTECTED_START: verified against Word.sdef and real sessions; edit by hand only -->
 ## 8. Verified pitfalls
 
 All ten come from real sessions against Office 16.x (and are why the recipes above look the way
@@ -214,14 +217,21 @@ they do). Each is a hard failure, not a preference.
 3. **Paragraph indices include table-cell paragraphs.** Read cell text as
    `content of text object of cell c of row r of t`; `content of cell` and `paragraph N of cell`
    often yield `missing value`.
-4. **Inline picture in a cell:** `make new inline picture at end of text object of cell c of row r of t with properties {file name:p}`
-   works. `at text object of cell` splits the cell (adds a column); `at start of …` raises an error.
+4. **Inline picture in a cell:** `make new inline picture at beginning of text object of cell c of row r of t with properties {file name:p}`
+   puts the picture in that cell, before any text it holds, whether the cell is empty or not
+   (verified Word 16.114). `at end of text object of cell …` writes past the cell's end mark: the
+   picture lands in the next cell, and after a row's last cell Word adds a column (one more
+   paragraph, table one column wider). `at text object of cell` splits the cell (adds a column);
+   `at start of …` raises an error.
 5. **Floating picture:** `set pic to make new picture at text object of paragraph 1 of d with properties {file name:p}`,
    then `set wrap type of wrap format of pic to wrap front`, `relative horizontal/vertical position page`,
    and `left position` / `top` / `width` / `height` (set `lock aspect ratio` false first). Use it when a
    table row must not grow.
 6. **Use the reference returned by `make new`.** `shape k` indices include pre-existing shapes, so
-   counting shapes after an insertion addresses the wrong object.
+   counting shapes after an insertion addresses the wrong object. The returned reference works for
+   `make new picture` and for `make new inline picture at beginning of …`; the one returned by
+   `make new inline picture at end of text object of cell …` is dead (`-1728`/`-10006` on the next
+   property access), one more reason never to insert there (verified Word 16.114).
 7. **Text boxes hold a text range, not a text object:** read with
    `content of text range of text frame of shape k`. Writing there replaces any drawn content
    inside the box as well.
@@ -235,3 +245,4 @@ they do). Each is a hard failure, not a preference.
    the paragraph with real text instead.
 10. **MIP-labelled sources stay OLE2.** On sensitivity-label-managed machines, `save as … format document default`
     still produces an OLE2 container; detect it via inspect `container: ole2_mip` and never unzip it.
+<!-- PROTECTED_END -->
