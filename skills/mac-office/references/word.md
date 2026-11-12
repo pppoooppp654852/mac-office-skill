@@ -17,7 +17,7 @@ Level 3 reference. Load only for `.docx` work. All syntax below is verified agai
 
 ## 1. Open, Create, Save
 
-Editing an existing document (`--target-file "/abs/report.docx"`):
+Editing an existing document (`--target-file "/abs/report.docx"`, **no `--in-place`**: the result goes to `report_revised.docx`; for a follow-up edit target `report_revised.docx` with `--in-place`, see `SKILL.md` §2):
 
 ```applescript
 tell application "Microsoft Word"
@@ -145,7 +145,26 @@ end tell
 
 Always insert `at beginning of text object of cell …` (empty or not; the picture goes before any
 text). Never use `at end of text object of cell` (lands in the next cell, or adds a column after a
-row's last cell), `at text object of cell` (splits the cell) or `at start of …` (errors) — §8.4.
+row's last cell), `at text object of cell` for an *inline* picture (splits the cell) or
+`at start of …` (errors) — §8.4.
+
+**Floating picture inside a table cell** (signature, stamp, logo where the row height must not
+change — e.g. "不要改變列高/版面"):
+
+```applescript
+tell application "Microsoft Word"
+	set p to system attribute "MAC_OFFICE_ASSET_1"
+	set pic to make new picture at text object of cell 2 of row 3 of table 1 of active document ¬
+		with properties {file name:p}
+	set wrap type of wrap format of pic to wrap front
+	set lock aspect ratio of pic to true
+	set height of pic to 14.0
+	save active document
+end tell
+```
+
+Anchored in the cell, `wrap front` keeps the table shape and every line position unchanged. Size
+it to fit inside the row (aspect ratio locked) and confirm with a before/after `--render`.
 
 **Floating picture** (does not disturb row height; wrap settings decide overlap):
 
@@ -221,9 +240,11 @@ they do). Each is a hard failure, not a preference.
    puts the picture in that cell, before any text it holds, whether the cell is empty or not
    (verified Word 16.114). `at end of text object of cell …` writes past the cell's end mark: the
    picture lands in the next cell, and after a row's last cell Word adds a column (one more
-   paragraph, table one column wider). `at text object of cell` splits the cell (adds a column);
-   `at start of …` raises an error.
-5. **Floating picture:** `set pic to make new picture at text object of paragraph 1 of d with properties {file name:p}`,
+   paragraph, table one column wider). `make new inline picture at text object of cell` splits the
+   cell (adds a column); `at start of …` raises an error. A floating `make new picture at text object of cell …`
+   does not split it (table shape and layout verified unchanged, bench w06/w16).
+5. **Floating picture:** `set pic to make new picture at text object of paragraph 1 of d with properties {file name:p}`
+   (or `at text object of cell c of row r of t` to anchor it in a cell),
    then `set wrap type of wrap format of pic to wrap front`, `relative horizontal/vertical position page`,
    and `left position` / `top` / `width` / `height` (set `lock aspect ratio` false first). Use it when a
    table row must not grow.
